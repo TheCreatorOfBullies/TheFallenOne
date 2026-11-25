@@ -1,0 +1,4 @@
+import React from 'react';
+import {X} from 'lucide-react';
+import {BUILDINGS} from './building';
+export default function BuildDialog({inventory,onBuild,onClose}){return <div className="modal-shade" onClick={onClose}><section className="dialog" onClick={e=>e.stopPropagation()}><div className="dialog-head"><div><span className="eyebrow">МАТЕРИАЛЫ</span><h2>Строительство</h2></div><button className="icon-button" onClick={onClose} aria-label="Закрыть"><X size={20}/></button></div><p className="inventory-hint">Объект появится перед вами. Бетон застывает около 2,5 игровых часов.</p>{Object.entries(BUILDINGS).map(([id,b])=><button key={id} className="build-option" disabled={!inventory.includes(id)} onClick={()=>onBuild(id)}><span><b>{b.name}</b><small>{id==='plank'?'1 × доски':'1 × бетон'}</small></span><span>ПОСТРОИТЬ →</span></button>)}</section></div>}
